@@ -1,0 +1,30 @@
+button {
+    width: auto;
+    cursor: pointer;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0) 0px 1px 1px;
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(78, 60, 60);
+    padding: 10px 15px;   
+    background: linear-gradient(130deg, rgb(0, 180, 230), rgb(0, 240, 224)) transparent;
+    background-repeat: no-repeat;
+    background-position: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 8px !important;
+    outline: 0px;
+    overflow: hidden;
+}
+
+#voteNo {
+    color: rgb(234, 226, 226);
+    background: linear-gradient(130deg, rgb(189, 161, 154), rgb(2, 2, 2)) transparent;
+}
+
+#voteNo img.logo {
+    transform: rotate(180deg);
+}
