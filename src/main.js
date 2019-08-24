@@ -1,7 +1,6 @@
 let form = document.getElementById('form');
 let vote = document.getElementById('vote');
 let button = document.getElementById('button');
-let support = vote.value;
 
 window.addEventListener('load', () => {
 
@@ -13,8 +12,13 @@ window.addEventListener('load', () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            let support = vote.value;
+            if (support === 'false') {support = false;} else {support = true;} 
+
             // need to get the VoteId somehow
-            VotingAppContract.methods.vote('5', true, true).send({from: accounts[0]}, (error, transactionHash) => {
+            // function vote(uint256 _voteId, bool _supports, bool _executesIfDecided) external voteExists(_voteId) 
+            VotingAppContract.methods.vote('9', support, true).send({from: accounts[0]}, (error, transactionHash) => {
+                console.log('support is', support);
                 console.log('There was an error?', error);
                 console.log('tx hash from smart contract', transactionHash);
             });
