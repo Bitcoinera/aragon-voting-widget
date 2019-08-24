@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aragon/ui": "^0.40.2",
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
     "truffle-hdwallet-provider": "^1.0.17"
   }
 }
