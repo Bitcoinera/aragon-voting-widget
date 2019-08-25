@@ -22,6 +22,15 @@
   color: #61dafb;
 }
 
+.logo {
+  width: 10%;
+  float: left;
+}
+
+#voteNo img.logo {
+  transform: rotate(180deg);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
