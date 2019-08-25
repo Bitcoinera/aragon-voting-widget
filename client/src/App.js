@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
-import { Button } from '@aragon/ui'
+import { Button, AppView } from '@aragon/ui'
 import "./App.css";
 
 class App extends Component {
@@ -31,19 +31,19 @@ class App extends Component {
       // get smart contract
       const VotingAppContract = new web3.eth.Contract(votingAppABI, '0x40923e3215243b4a51bf411f9873d02f5bacfd60');
       
+      let input = document.getElementById('idInput');
       let voteYes = document.getElementById('voteYes');
       let voteNo = document.getElementById('voteNo');
-      let voteId = '16';
-
-      console.log('Voting App', VotingAppContract);
       
       const vote = (bool) => {
-          // need to get the VoteId somehow
-          // function vote(uint256 _voteId, bool _supports, bool _executesIfDecided) external voteExists(_voteId) 
-          VotingAppContract.methods.vote(voteId, bool, true).send({from: accounts[0]}, (error, transactionHash) => {
-              console.log('There was an error?', error);
-              console.log('tx hash from smart contract', transactionHash);
-          });
+        let voteId = input.value;
+        // need to get the VoteId somehow
+        // function vote(uint256 _voteId, bool _supports, bool _executesIfDecided) external voteExists(_voteId) 
+        VotingAppContract.methods.vote(voteId, bool, true).send({from: accounts[0]}, (error, transactionHash) => {
+          console.log('VoteId', voteId);  
+          console.log('There was an error?', error);
+          console.log('tx hash from smart contract', transactionHash);
+        });
       }
 
       voteYes.addEventListener('click', async (e) => {
@@ -81,15 +81,24 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div>
-        <h1>Make your vote</h1>
-        <Button mode="outline" id="voteNo">
-          <img className="logo" src="aragonlogo.svg"/>
-          No</Button>
-        <Button mode="strong" id="voteYes">
-          <img className="logo" src="aragonlogo.svg"/>
-          Yes</Button>
-      </div>
+      <AppView>
+        <div className="container">
+          <h1>Make your vote</h1>
+
+          <p>Hey! You are about to cast a vote on this <a href="https://rinkeby.aragon.org/#/dappwalltest0">DAO</a></p>
+
+          <p>Choose the vote Id to vote on:</p>
+          <input id="idInput" type="text"></input>
+          <br></br>
+
+          <Button mode="outline" id="voteNo">
+            <img className="logo" alt="Aragon Logo" src="aragonlogo.svg"/>
+            No</Button>
+          <Button mode="strong" id="voteYes">
+            <img className="logo" alt="Aragon Logo" src="aragonlogo.svg"/>
+            Yes</Button>
+        </div>
+      </AppView>
     );
   }
 }
